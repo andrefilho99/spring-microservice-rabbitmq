@@ -25,3 +25,12 @@ spring:
               args:
                 name: PRODUCT-SERVICE
                 fallbackuri: forward:/product-service-fallback
+        - id: SHOPPING-CART-SERVICE
+          uri: lb://SHOPPING-CART-SERVICE
+          predicates:
+            - Path=/shopping-carts/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: SHOPPING-CART-SERVICE
+                fallbackuri: forward:/shopping-cart-service-fallback

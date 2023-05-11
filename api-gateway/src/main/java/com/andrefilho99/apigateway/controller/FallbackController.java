@@ -12,4 +12,9 @@ public class FallbackController {
     public ResponseEntity productServiceFallback() {
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("PRODUCT-SERVICE is down!");
     }
+
+    @RequestMapping("/shopping-cart-service-fallback")
+    public ResponseEntity shoppingCartServiceFallback() {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("SHOPPING-CART-SERVICE is down!");
+    }
 }

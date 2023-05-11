@@ -7,6 +7,7 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +18,11 @@ public class RabbitConfig {
     public static final String topicExchangeName = "product-created-exchange";
 
     public static final String queueName = "product-created-email";
+
+    @Bean
+    ApplicationRunner runner(ConnectionFactory cf) {
+        return args -> cf.createConnection().close();
+    }
 
     @Bean
     Queue queue() {
